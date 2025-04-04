@@ -17,7 +17,7 @@ if __name__ == "__main__":
     DATA_URL = "https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip"
     DOWNLOAD_PATH = "./data/source.zip"
     EXTRACT_TO = "./data/unzipped_folder"
-    S3_BUCKET = "my-etl-project-bucket"
+    S3_BUCKET = "company-reports-final"
     RDS_DB = os.getenv("RDS_DB")
 
     # Ensure directories exist
@@ -31,24 +31,24 @@ if __name__ == "__main__":
         "Host": "www.sec.gov"
     }
 
-    # print("Downloading data...")
-    # session = requests.Session()
-    # response = session.get(DATA_URL, headers=HEADERS, stream=True)
+    print("Downloading data...")
+    session = requests.Session()
+    response = session.get(DATA_URL, headers=HEADERS, stream=True)
 
-    # if response.status_code == 200:
-    #     with open(DOWNLOAD_PATH, "wb") as f:
-    #         for chunk in response.iter_content(chunk_size=1024):
-    #             f.write(chunk)
-    #     print("Download successful.")
-    # else:
-    #     print(f"Failed to download. Status Code: {response.status_code}")
-    #     exit(1)
+    if response.status_code == 200:
+        with open(DOWNLOAD_PATH, "wb") as f:
+            for chunk in response.iter_content(chunk_size=1024):
+                f.write(chunk)
+        print("Download successful.")
+    else:
+        print(f"Failed to download. Status Code: {response.status_code}")
+        exit(1)
     
-    # # Step 2: Extract the zip file
-    # print("Extracting zip file...")
-    # with zipfile.ZipFile(DOWNLOAD_PATH, 'r') as zip_ref:
-    #     zip_ref.extractall(EXTRACT_TO)
-    # print("Extraction complete.")
+    # Step 2: Extract the zip file
+    print("Extracting zip file...")
+    with zipfile.ZipFile(DOWNLOAD_PATH, 'r') as zip_ref:
+        zip_ref.extractall(EXTRACT_TO)
+    print("Extraction complete.")
 
     # Step 3: AWS Setup - Upload raw JSON files to S3
     print("Uploading raw files to S3...")

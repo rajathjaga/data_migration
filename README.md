@@ -6,7 +6,7 @@ You have a URL that points to a zip file. The zip file contains multiple JSON fi
 
 ## Overview
 
-This ETL pipeline automates the process of downloading, extracting, transforming, and loading data from JSON files. The transformed data is uploaded to an AWS S3 bucket, and the final processed data is stored in an RDS database.
+This data migration tool automates the process of downloading, extracting, transforming, and loading data from JSON files. The transformed data is uploaded to an AWS S3 bucket, and the final processed data is stored in an RDS database.
 
 ## Features
 
@@ -19,8 +19,8 @@ This ETL pipeline automates the process of downloading, extracting, transforming
 1. **Clone the repository**
 
    ```sh
-   git clone https://github.com/your-repo/etl-pipeline.git
-   cd etl-pipeline
+   https://github.com/rajathjaga/data_migration.git
+   cd data_migration
    ```
 
 2. **Install dependencies**
@@ -38,7 +38,7 @@ This ETL pipeline automates the process of downloading, extracting, transforming
    AWS_SECRET_ACCESS_KEY=your_secret_key
    ```
 
-## Running the ETL Pipeline
+## Running the  Pipeline
 
 Execute the pipeline with:
 
